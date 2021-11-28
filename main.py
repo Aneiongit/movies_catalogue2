@@ -3,12 +3,11 @@ import tmdb_client
 
 class1 = "bgg"
 app = Flask(__name__)
-
+new_list = ["popular", "now_playing", "top_rated", "upcoming"]
 
 @app.route('/')
 def homepage():
     selected_list = request.args.get("list_type", "popular")
-    new_list = ["popular", "now_playing", "top_rated", "upcoming"]
     if selected_list not in new_list:
         selected_list = "popular"
     movies = tmdb_client.get_movies(how_many=8, list_type=selected_list)
