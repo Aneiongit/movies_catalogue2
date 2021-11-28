@@ -1,6 +1,6 @@
 import requests
 
-api_token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlM2QxYTRlZTEzODYyNDFmNWZiOTYxNzNiNzMyNDgzNyIsInN1YiI6IjYxOTNlZmY2OTU3ZTZkMDA4NWMzMzA3OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1L5qiruEWUs5xNQMLrDHW7yRTPGRBh1LBGGbCCbelSc"
+api_token = "api_token"
 
 
 def get_popular_movies():
