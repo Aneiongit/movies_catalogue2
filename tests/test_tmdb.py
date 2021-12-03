@@ -1,5 +1,7 @@
 from unittest.mock import Mock
 import tmdb_client
+import pytest
+from main import app
 
 
 def test_get_single_movie(monkeypatch):
@@ -32,3 +34,14 @@ def test_get_movie_cast(monkeypatch):
     monkeypatch.setattr("tmdb_client.requests.get", my_mock)
     single_movie = tmdb_client.get_single_movie_cast(1)
     assert single_movie == "movie1"
+
+
+@pytest.mark.parametrize("list_type", ("now_playing", "popular", "upcoming", "top_rated"))
+def test_homepage(monkeypatch, list_type):
+    api_mock = Mock(return_value={'results': []})
+    monkeypatch.setattr("tmdb_client.call_tmdb_api", api_mock)
+
+    with app.test_client() as client:
+        response = client.get('/')
+        assert response.status_code == 200
+

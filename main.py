@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request
 import tmdb_client
 
-class1 = "bgg"
+
 app = Flask(__name__)
 new_list = ["popular", "now_playing", "top_rated", "upcoming"]
+
 
 @app.route('/')
 def homepage():
