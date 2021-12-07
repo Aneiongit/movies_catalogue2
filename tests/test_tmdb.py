@@ -5,13 +5,13 @@ from main import app
 
 
 def test_get_single_movie(monkeypatch):
-    id = ['Movie 1', 'Movie 2']
+    single_movie_id = ['Movie 1', 'Movie 2']
     my_mock = Mock()
     response = my_mock.return_value
-    response.json.return_value = id
+    response.json.return_value = single_movie_id
     monkeypatch.setattr("tmdb_client.requests.get", my_mock)
     single_movie = tmdb_client.get_single_movie(1)
-    assert single_movie == id
+    assert single_movie == single_movie_id
 
 
 def test_get_movie_images(monkeypatch):
@@ -23,9 +23,10 @@ def test_get_movie_images(monkeypatch):
     response.return_value = url + size + poster
     monkeypatch.setattr("tmdb_client.requests.get", my_mock)
     single_movie = tmdb_client.get_poster_url(poster)
-    assert single_movie == url + size + "/" + poster
+    expected_url = url + size + "/" + poster
+    assert single_movie == expected_url
 
-
+    
 def test_get_movie_cast(monkeypatch):
     id = {"cast": "movie1"}
     my_mock = Mock()
